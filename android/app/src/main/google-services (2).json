@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "439026737701",
+    "project_id": "swiftype2",
+    "storage_bucket": "swiftype2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:439026737701:android:b2fad32b67668c36d7d5cc",
+        "android_client_info": {
+          "package_name": "com.example.creationofswiftype"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "439026737701-ev5i91apsg9rkcsrhm60opchogb4s5pm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8mhOSyAkf6pHftXjStn5WhA-cKz9E5WM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "439026737701-ev5i91apsg9rkcsrhm60opchogb4s5pm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
