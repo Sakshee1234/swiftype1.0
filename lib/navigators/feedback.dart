@@ -30,7 +30,6 @@ class _feedbackState extends State<myfeedback> {
         title: Text('Swif⚡ype',style: TextStyle(color: Colors.black),),
       ),
       body: SafeArea(
-        // padding: EdgeInsets.all(16.0),
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -43,12 +42,12 @@ class _feedbackState extends State<myfeedback> {
                 //         fontWeight: FontWeight.bold,
                 //         fontSize: 20.0)),
                 SizedBox(height: 25.0),
-                buildCheckItem("Suggestions are irrelevant"),
-                buildCheckItem("Not user friendly"),
-                buildCheckItem("Offensive"),
-                buildCheckItem("Other issues"),
-                buildCheckItem("Suggestions "),
-                SizedBox(height: 20.0),
+                // buildCheckItem("Suggestions are irrelevant"),
+                // buildCheckItem("Not user friendly"),
+                // buildCheckItem("Offensive"),
+                // buildCheckItem("Other issues"),
+                // buildCheckItem("Suggestions "),
+                // SizedBox(height: 20.0),
                 buildFeedbackForm(),
                 SizedBox(height: 20.0),
                 buildFeedbackField(),

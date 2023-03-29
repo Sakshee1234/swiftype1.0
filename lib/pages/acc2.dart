@@ -1,5 +1,6 @@
 // import 'package:account1/acc3.dart';
 import 'package:creationofswiftype/pages/acc3.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:swiftypeversion2/pages/acc3.dart';
@@ -25,6 +26,8 @@ class EditProfilePage extends StatefulWidget {
 }
 
 class _EditProfilePageState extends State<EditProfilePage> {
+  FirebaseAuth auth=FirebaseAuth.instance;
+  User user=FirebaseAuth.instance.currentUser!;
   TextEditingController _name = new TextEditingController();
   TextEditingController _email = new TextEditingController();
   TextEditingController _location = new TextEditingController();
@@ -219,9 +222,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         'email': _email.text,
                         'location': _location.text,
                         'phone': _phone.text,
+                        'UID':user.uid
                       });
                       // Map <String,dynamic> data = {"feild1": _name.text, "feild2": _email.text, "feild3": _location.text, "feild4": _phone.text};
                       // FirebaseFirestore.instance.collection("test").add(data);
+                      // Navigator.pop(context);
+                      // Navigator.pop(context);
                       Navigator.push(
                         context, MaterialPageRoute(builder: (BuildContext context){
                           return HomePage(name: _name.text, email: _email.text, location: _location.text, phone: _phone.text);

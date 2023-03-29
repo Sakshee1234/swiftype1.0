@@ -19,3 +19,26 @@ class WordModel{
     );
   }
 }
+
+
+class ProfileModel{
+  
+  String id;
+  String name;
+  String email;
+  String phone;
+  String location;
+  String UID;
+  ProfileModel({required this.id,required this.name,required this.email,required this.phone,required this.location,required this.UID});
+
+  factory ProfileModel.fromJSON(DocumentSnapshot doc){
+    return ProfileModel(
+      id:doc.id,
+      name:doc['name'],
+      email:doc['email'],
+      phone:doc['phone'],
+      location:doc['location'],
+      UID:doc['UID']
+    );
+  }
+}

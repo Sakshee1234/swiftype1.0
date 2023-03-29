@@ -110,7 +110,29 @@ class _DictionaryState extends State<Dictionary> {
                   elevation: 5,
                   child: ListTile(
                     contentPadding: EdgeInsets.symmetric(horizontal: 10,vertical: 5),
-                    title: Text(w.word),
+                    title: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(w.word),
+                        IconButton(
+                          icon: Icon(Icons.delete,color: Colors.green,),
+                          onPressed: () async {
+                            showDialog(context: context,builder: (context)=>AlertDialog(
+                              title: Text('Are you sure?'),
+                              actions: [
+                                TextButton(onPressed: (){
+                                  Navigator.pop(context);
+                                }, child: Text('No',style: TextStyle(color: Colors.green),)),
+                                TextButton(onPressed: () async{
+                                  await FirestoreService().deleteWord(w.id);
+                                  Navigator.pop(context);
+                                }, child: Text('Yes',style:TextStyle(color: Colors.green))),
+                              ],
+                            ));
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                 );
               },
@@ -121,6 +143,7 @@ class _DictionaryState extends State<Dictionary> {
             return Center(child:Text('No words'));
           }
         },
+        
       ),
      floatingActionButton: FloatingActionButton(
       backgroundColor: Colors.green,
@@ -141,7 +164,7 @@ class _DictionaryState extends State<Dictionary> {
                     await FirestoreService().insertWord(_textEditingController.text,user.uid);
                      Navigator.pop(context);
                   },
-                  child: const Text('Add'),
+                  child: const Text('Add',style: TextStyle(color: Colors.green),),
                 ),
               ],
             ),

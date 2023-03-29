@@ -27,7 +27,7 @@ import 'acc2.dart';
 //     );
 //   }
 // }
-
+enum Language { English }
 class SettingPage extends StatefulWidget {
   const SettingPage({super.key});
   @override
@@ -35,6 +35,7 @@ class SettingPage extends StatefulWidget {
 }
 
 class _SettingPageState extends State<SettingPage> {
+  Language? _language;Language? English;
   bool valNotify1 = true;
   bool valNotify2 = true;
  void signUserOut() async {
@@ -114,36 +115,55 @@ class _SettingPageState extends State<SettingPage> {
               buildAccountOption(context, "Your Profile"),
               buildAccountOption(context, "Manage Profile Settings"),
               
-              SizedBox(height: 40),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
+              SizedBox(height: 50),
+              GestureDetector(
+                onTap:(){showDialog(context: context, builder: (context)=>AlertDialog(
+                  title:Column(children:[Row(
                     children: [
-                      Icon(Icons.language_outlined, color: Colors.black),
-                      SizedBox(width: 8),
-                      Text("Language Preference", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold
-                      )),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('English',style: TextStyle(fontSize: 20),),
+                          Radio<Language>(
+                            value: Language.English,
+                            groupValue: _language,
+                            onChanged: (Language? value) {
+                              setState(() {
+                                _language = value;
+                              });
+                            },
+                          ),
+                        ],
+                      ),
                     ],
-                  ),
-                  // SizedBox(width: 84),
-                  Icon(Icons.arrow_forward_ios, color: Colors.black),
-                ],
+                  ),]),
+                  actions: [
+                    TextButton(onPressed: (){
+                      Navigator.pop(context);
+                    }, child: Text('OK'))
+                  ],
+              ));
+              },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(Icons.language_outlined, color: Colors.black),
+                        SizedBox(width: 8),
+                        Text("Language Preference", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold
+                        )),
+                      ],
+                    ),
+                    // SizedBox(width: 84),
+                    Icon(Icons.arrow_forward_ios, color: Colors.black),
+                  ],
+                ),
               ),
       
-              // SizedBox(height: 40),
-              // Row(
-              //   children: [
-              //     Icon(Icons.menu_book_outlined, color: Colors.black),
-              //     SizedBox(width: 10),
-              //     Text("Manage Personal Dictionary", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold
-              //     )),
-              //     SizedBox(width: 16),
-              //     Icon(Icons.arrow_forward_ios, color: Colors.black),
-              //   ],
-              // ),
+
               
-              SizedBox(height: 40),
+              SizedBox(height: 50),
               GestureDetector(
                onTap: () {
                   Navigator.push(
@@ -167,11 +187,18 @@ class _SettingPageState extends State<SettingPage> {
                 ),
               ),
               
-              SizedBox(height: 40),
+              SizedBox(height: 50),
               GestureDetector(
                 onTap:(){
                   // showAboutDialog(context:context);
-                   Navigator.push(context, MaterialPageRoute(builder: (context)=>myaboutpg()));
+                  showDialog(context: context, builder: (context)=>AboutDialog(applicationName: "About Swift⚡ype",
+                    applicationVersion: '0.0.1',
+                    applicationLegalese: "Developed by ASV",
+                    children: <Widget>[
+                      Text(
+                          'Displays an AboutDialog, which describes the application and provides a button to show licenses for software used by the application. The arguments correspond to the properties on AboutDialog. If the application has a Drawer, consider using AboutListTile instead of calling this directly. If you do not need an about box in your application, you should at least provide an affordance to call showLicensePage. The licenses shown on the LicensePage are those returned by the LicenseRegistry API, which can be used to add more licenses to the list. The context, useRootNavigator, routeSettings and anchorPoint arguments are passed to showDialog, the documentation for which discusses how it is used.')
+                    ],));
+                  //  Navigator.push(context, MaterialPageRoute(builder: (context)=>myaboutpg()));
                   },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -190,16 +217,16 @@ class _SettingPageState extends State<SettingPage> {
                 ),
               ),
               
-              SizedBox(height: 20),
-              Row(
-                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Icon(Icons.notifications_outlined, color: Colors.black),
-                  buildNotificationOption("Notifications", valNotify1, onChangeFunction1)
-                ],
-              ),
+              // SizedBox(height: 20),
+              // Row(
+              //   // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   children: [
+              //     Icon(Icons.notifications_outlined, color: Colors.black),
+              //     buildNotificationOption("Notifications", valNotify1, onChangeFunction1)
+              //   ],
+              // ),
       
-              SizedBox(height: 20),
+              SizedBox(height: 30),
               Row(
                 // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -208,9 +235,30 @@ class _SettingPageState extends State<SettingPage> {
                 ],
               ),
               
-              SizedBox(height: 20),
+              SizedBox(height: 45),
               GestureDetector(
-                onTap: signUserOut,
+                onTap: (){
+                  showDialog(context: context, builder: (context){
+                    return AlertDialog(
+                      title: Text("Are you sure you want to logout?"),
+                      actions: [
+                        TextButton(
+                          onPressed: (){
+                            Navigator.pop(context);
+                          },
+                          child: Text("No", style: TextStyle(color: Colors.green)),
+                        ),
+                        TextButton(
+                          onPressed: (){
+                            signUserOut();
+                            Navigator.pop(context);
+                          },
+                          child: Text("Yes",style: TextStyle(color: Colors.green),),
+                        ),
+                      ],
+                    );
+                  });
+                },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

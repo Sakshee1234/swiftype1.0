@@ -13,7 +13,13 @@ class FirestoreService{
       );
     }catch(e)
     {
-
+    }
+  }
+  Future deleteWord(String id) async{
+    try{
+      await f.collection('words').doc(id).delete();
+    }catch(e)
+    {
     }
   }
 }
