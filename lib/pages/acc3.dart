@@ -141,7 +141,7 @@ class HomePage extends StatelessWidget {
                       // Firestore.instance.collection("test").add(data);
                       Navigator.push(
                   context, MaterialPageRoute(builder: (BuildContext context){
-                    return SettingPage();
+                    return Settingpage();
                   }));
                
                     },

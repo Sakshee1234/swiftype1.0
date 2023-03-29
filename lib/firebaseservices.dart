@@ -22,4 +22,16 @@ class FirestoreService{
     {
     }
   }
+
+  Future insertfeedback(String feedback,String mail) async{
+    try{
+      await f.collection('feedback').add({
+        'feedback':feedback,
+        'mail':mail,
+      }
+      );
+    }catch(e)
+    {
+    }
+  }
 }

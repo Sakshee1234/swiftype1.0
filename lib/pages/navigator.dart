@@ -1,10 +1,11 @@
 import 'package:creationofswiftype/dictionary.dart';
+import 'package:creationofswiftype/pages/acc1.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 // import 'package:loginpage/navigators/feedback.dart';
 // import 'package:loginpage/pages/acc1.dart';
 // import 'package:loginpage/pages/dictionary.dart';
-import 'acc1.dart';
+
 import 'dictionary.dart';
 import 'homepage.dart';
 
@@ -30,7 +31,7 @@ class NavigatorState extends State<myNavigatorBar> {
   static const List<Widget> _widgetOptions = <Widget>[
     HomePage(),
     Dictionary(),
-    SettingPage()
+    Settingpage()
   ];
 
   @override

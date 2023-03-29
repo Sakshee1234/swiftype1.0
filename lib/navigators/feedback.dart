@@ -1,4 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+
+import '../firebaseservices.dart';
 
 
 class myfeedback extends StatefulWidget {
@@ -9,6 +12,9 @@ class myfeedback extends StatefulWidget {
 }
 
 class _feedbackState extends State<myfeedback> {
+
+  TextEditingController feedback=TextEditingController();
+  TextEditingController mail=TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,7 +66,18 @@ class _feedbackState extends State<myfeedback> {
                           backgroundColor: Colors.green,
                           padding: EdgeInsets.all(16.0),
                         ),
-                        onPressed: () {},
+                        onPressed: () async {
+                          await FirestoreService().insertfeedback(feedback.text,mail.text);
+                          Navigator.pop(context);
+                          showDialog(context: context, builder: (context) => AlertDialog(
+                            title: Text("Thank you for your feedback"),
+                            actions: [
+                              TextButton(onPressed: (){
+                                Navigator.pop(context);
+                              }, child: Text("OK",style: TextStyle(color: Colors.green),))
+                            ],
+                          ));
+                          },
                         child: Text("Submit",
                             style: TextStyle(
                                 color: Colors.white,
@@ -77,6 +94,7 @@ class _feedbackState extends State<myfeedback> {
 
   buildFeedbackField() {
     return TextField(
+      controller: mail,
       style: TextStyle(
         color: Colors.green,
       ),
@@ -121,6 +139,7 @@ class _feedbackState extends State<myfeedback> {
       child: Stack(
         children: <Widget>[
           TextField(
+            controller: feedback,
             maxLines: 10,
             decoration: InputDecoration(
               hintText: " Enter your feedback here",
