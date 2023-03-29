@@ -1,3 +1,4 @@
+import 'package:creationofswiftype/pages/acc1.dart';
 import 'package:flutter/material.dart';
 // import 'package:account1/acc2.dart';
 
@@ -118,8 +119,42 @@ class HomePage extends StatelessWidget {
               InfoCard(placeholder: phone, icon: Icons.phone, onPressed: () async {}),
               InfoCard(placeholder: location, icon: Icons.location_city, onPressed: () async {}),
               InfoCard(placeholder: email, icon: Icons.email, onPressed: () async {}),
-
-              SizedBox(height: 60),
+              SizedBox(height: 30),
+              Row(
+              children: [
+                Center(
+                    child: OutlinedButton(
+                      style: OutlinedButton.styleFrom(
+                        padding: EdgeInsets.symmetric(horizontal: 172),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                      ),
+                    onPressed: (){
+                      // CollectionReference users = firestore.collection('users');
+                      // await users.add({
+                      //   'name': 'Aakriti'
+                      // });
+                      // await users.doc("profile123").set({
+                      //   'name': 'Aakriti'
+                      // });
+                      // Map <String,dynamic> data = {"feild1": _name.text, "feild2": _email.text, "feild3": _location.text, "feild4": _phone.text};
+                      // Firestore.instance.collection("test").add(data);
+                      Navigator.push(
+                  context, MaterialPageRoute(builder: (BuildContext context){
+                    return SettingPage();
+                  }));
+               
+                    },
+                    child: Text("DONE",
+                        style: TextStyle(
+                            fontSize: 14,
+                            letterSpacing: 2.2,
+                            color: Colors.black)),
+                    ),
+                  ),   
+              ],
+            ),
+              SizedBox(height: 30),
             Row(
               children: [
                 SizedBox(width: 20),

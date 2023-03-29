@@ -1,6 +1,7 @@
 // import 'package:account1/acc3.dart';
 import 'package:creationofswiftype/pages/acc3.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:swiftypeversion2/pages/acc3.dart';
 
 // void main(){
@@ -18,6 +19,7 @@ import 'package:flutter/material.dart';
 // }
 
 class EditProfilePage extends StatefulWidget {
+  
   @override
   _EditProfilePageState createState() => _EditProfilePageState();
 }
@@ -28,6 +30,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   TextEditingController _location = new TextEditingController();
   TextEditingController _phone = new TextEditingController();
   bool showPassword = false;
+  //FirebaseFirestore firestore = FirebaseFirestore.instance;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -193,7 +196,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)),
                       ),
-                    onPressed: () {},
+                    onPressed: () {Navigator.pop(context);},
                     child: Text("CANCEL",
                         style: TextStyle(
                             fontSize: 14,
@@ -209,7 +212,16 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)),
                       ),
-                    onPressed: () {
+                     onPressed: ()  {
+                      CollectionReference users = FirebaseFirestore.instance.collection('user');
+                     users.add({
+                        'name': _name.text,
+                        'email': _email.text,
+                        'location': _location.text,
+                        'phone': _phone.text,
+                      });
+                      // Map <String,dynamic> data = {"feild1": _name.text, "feild2": _email.text, "feild3": _location.text, "feild4": _phone.text};
+                      // FirebaseFirestore.instance.collection("test").add(data);
                       Navigator.push(
                         context, MaterialPageRoute(builder: (BuildContext context){
                           return HomePage(name: _name.text, email: _email.text, location: _location.text, phone: _phone.text);

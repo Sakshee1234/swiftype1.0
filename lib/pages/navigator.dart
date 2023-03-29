@@ -1,3 +1,4 @@
+import 'package:creationofswiftype/dictionary.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 // import 'package:loginpage/navigators/feedback.dart';
@@ -28,7 +29,7 @@ class NavigatorState extends State<myNavigatorBar> {
   }
   static const List<Widget> _widgetOptions = <Widget>[
     HomePage(),
-    myDictionary(),
+    Dictionary(),
     SettingPage()
   ];
 
@@ -68,11 +69,11 @@ class NavigatorState extends State<myNavigatorBar> {
       appBar: AppBar(
         backgroundColor: Colors.green,
         title: Text('Swif⚡ype',style: TextStyle(color: Colors.black),),
-        actions: [
-          IconButton(
-            onPressed: signUserOut,icon: Icon(Icons.logout,color: Colors.black),
-          )
-        ],
+        // actions: [
+        //   IconButton(
+        //     onPressed: signUserOut,icon: Icon(Icons.logout,color: Colors.black),
+        //   )
+        // ],
       ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),

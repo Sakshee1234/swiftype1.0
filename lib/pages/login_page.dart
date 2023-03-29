@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 // import 'package:loginpage/context/textfield.dart';
 
-// // import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:loginpage/pages/homepage.dart';
 import '../context/textfield.dart';
 import 'navigator.dart';
