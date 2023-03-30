@@ -139,11 +139,12 @@ class HomePage extends StatelessWidget {
                       // });
                       // Map <String,dynamic> data = {"feild1": _name.text, "feild2": _email.text, "feild3": _location.text, "feild4": _phone.text};
                       // Firestore.instance.collection("test").add(data);
-                      Navigator.push(
-                  context, MaterialPageRoute(builder: (BuildContext context){
-                    return Settingpage();
-                  }));
-               
+                      // Navigator.push(
+                  // context, MaterialPageRoute(builder: (BuildContext context){
+                  //   return Settingpage();
+                  // }));
+                    Navigator.pop(context);
+                    Navigator.pop(context);
                     },
                     child: Text("DONE",
                         style: TextStyle(

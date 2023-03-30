@@ -1,4 +1,5 @@
 // import 'package:account1/acc3.dart';
+import 'package:creationofswiftype/model/word_dic.dart';
 import 'package:creationofswiftype/pages/acc3.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -215,19 +216,29 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)),
                       ),
-                     onPressed: ()  {
+                     onPressed: () async{
+
                       CollectionReference users = FirebaseFirestore.instance.collection('user');
-                     users.add({
-                        'name': _name.text,
-                        'email': _email.text,
-                        'location': _location.text,
-                        'phone': _phone.text,
-                        'UID':user.uid
-                      });
-                      // Map <String,dynamic> data = {"feild1": _name.text, "feild2": _email.text, "feild3": _location.text, "feild4": _phone.text};
-                      // FirebaseFirestore.instance.collection("test").add(data);
-                      // Navigator.pop(context);
-                      // Navigator.pop(context);
+                      FirebaseFirestore.instance.collection("user").doc(users.id).
+                      update({"name":_name.text,
+                      'email':_email.text,
+                      'location': _location.text,
+                      'phone': _phone.text,
+                      'UID':user.uid });
+                      // if(users==null)
+                      // {
+                      //   users.add({
+                      //       'name': _name.text,
+                      //       'email': _email.text,
+                      //       'location': _location.text,
+                      //       'phone': _phone.text,
+                      //       'UID':user.uid
+                      //     });
+                      // }
+                      // else
+                      // {
+                      //   final users = await FirebaseAuth.instance.currentUser!; 
+                      // }
                       Navigator.push(
                         context, MaterialPageRoute(builder: (BuildContext context){
                           return HomePage(name: _name.text, email: _email.text, location: _location.text, phone: _phone.text);

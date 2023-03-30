@@ -34,4 +34,14 @@ class FirestoreService{
     {
     }
   }
+
+
+  // Future updateprofile(String name,String phone,String location,String email,String id) async{
+  //   try{
+  //     await f.collection('user').doc(id).update({'name'=name,});
+  //   }
+  //   catch(e){
+
+  //   }
+  // }
 }
