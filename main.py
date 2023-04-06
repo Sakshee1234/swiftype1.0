@@ -23,3 +23,4 @@ def autocomplete(input_text):
     if syn.startswith(input_text.lower()):
       autocomplete_words.append(syn.capitalize())
   return autocomplete_words[:5]
+
