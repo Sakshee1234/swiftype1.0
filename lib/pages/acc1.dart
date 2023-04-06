@@ -8,7 +8,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:provider/provider.dart';
-
+import 'package:creationofswiftype/darktheme.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -95,7 +95,9 @@ class _SettingPageState extends State<Settingpage> {
        return Scaffold(
         floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.green,
-            onPressed: _toggleTheme,
+            onPressed: (){
+              darkthemetoggle();
+            },
             tooltip: 'Increment',
             child: const Icon(Icons.lightbulb_outline),
             ),

@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 // import 'package:loginpage/pages/acc1.dart';
 // import 'package:loginpage/pages/dictionary.dart';
 
-import 'dictionary.dart';
 import 'homepage.dart';
 
 
