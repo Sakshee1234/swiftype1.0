@@ -33,8 +33,27 @@ class _EditProfilePageState extends State<EditProfilePage> {
   TextEditingController _email = new TextEditingController();
   TextEditingController _location = new TextEditingController();
   TextEditingController _phone = new TextEditingController();
+  // QuerySnapshot userid=await FirebaseFirestore.instance.collection('user').where('UID',isEqualTo: user.uid).limit(1).get();
+   
   bool showPassword = false;
   //FirebaseFirestore firestore = FirebaseFirestore.instance;
+  @override
+  initState(){
+    super.initState();
+     CollectionReference users = FirebaseFirestore.instance.collection('user');
+    _email= TextEditingController(text:user.email);
+
+    users.where('UID',isEqualTo: user.uid).get().then((value){
+      _name= TextEditingController(text:value.docs[0]['Name']);
+      _location= TextEditingController(text:value.docs[0]['Location']);
+      _phone= TextEditingController(text:value.docs[0]['Phone']);
+    });
+  }
+  @override
+  void dispose() {
+    _name.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -126,6 +145,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 decoration: InputDecoration(
                     contentPadding: EdgeInsets.only(bottom: 3),
                     labelText: 'Full Name',
+                    
                     floatingLabelBehavior: FloatingLabelBehavior.always,
                     hintStyle: TextStyle(
                       fontSize: 16,
@@ -217,14 +237,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         borderRadius: BorderRadius.circular(20)),
                       ),
                      onPressed: () async{
-
                       CollectionReference users = FirebaseFirestore.instance.collection('user');
-                      FirebaseFirestore.instance.collection("user").doc(users.id).
-                      update({"name":_name.text,
+                      FirebaseFirestore.instance.collection("user").doc(user.uid).set({"name":_name.text,
                       'email':_email.text,
                       'location': _location.text,
                       'phone': _phone.text,
-                      'UID':user.uid });
+                      'UID':user.uid 
+                      });
                       // if(users==null)
                       // {
                       //   users.add({

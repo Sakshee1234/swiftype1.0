@@ -167,10 +167,6 @@ class _SettingPageState extends State<Settingpage> {
                   ],
                 ),
               ),
-                
-
-
-              
               SizedBox(height: 50),
               GestureDetector(
                onTap: () {

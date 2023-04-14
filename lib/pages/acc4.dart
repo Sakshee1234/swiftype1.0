@@ -52,7 +52,7 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
       ),
       body: StreamBuilder(
-        stream: FirebaseFirestore.instance.collection("user").where("UID", isEqualTo: user.uid).snapshots(),
+        stream: FirebaseFirestore.instance.collection("user").where("UID", isEqualTo: user.uid).limit(1).snapshots(),
         builder: (context, AsyncSnapshot snapshot){
           if(snapshot.hasData){
             return ListView.builder(
