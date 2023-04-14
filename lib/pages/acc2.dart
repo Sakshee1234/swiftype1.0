@@ -2,23 +2,9 @@
 import 'package:creationofswiftype/model/word_dic.dart';
 import 'package:creationofswiftype/pages/acc3.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-// import 'package:swiftypeversion2/pages/acc3.dart';
-
-// void main(){
-//   runApp(SettingsUI());
-// }
-// class SettingsUI extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       debugShowCheckedModeBanner: false,
-//       title: "Setting UI",
-//       home: EditProfilePage(),
-//     );
-//   }
-// }
 
 class EditProfilePage extends StatefulWidget {
   
@@ -41,18 +27,15 @@ class _EditProfilePageState extends State<EditProfilePage> {
   initState(){
     super.initState();
      CollectionReference users = FirebaseFirestore.instance.collection('user');
+    FirebaseFirestore.instance.collection("user").doc(user.uid).get().then((value) {
+      _name.text=value['name'];
+      _email.text=value['email'];
+      _location.text=value['location'];
+      _phone.text=value['phone'];});
+
     _email= TextEditingController(text:user.email);
 
-    users.where('UID',isEqualTo: user.uid).get().then((value){
-      _name= TextEditingController(text:value.docs[0]['Name']);
-      _location= TextEditingController(text:value.docs[0]['Location']);
-      _phone= TextEditingController(text:value.docs[0]['Phone']);
-    });
-  }
-  @override
-  void dispose() {
-    _name.dispose();
-    super.dispose();
+
   }
   @override
   Widget build(BuildContext context) {
