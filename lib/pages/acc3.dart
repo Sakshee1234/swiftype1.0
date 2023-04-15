@@ -1,29 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:creationofswiftype/pages/acc1.dart';
 import 'package:flutter/material.dart';
-// import 'package:account1/acc2.dart';
-
-// void main() => runApp(MyApp());
-
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       debugShowCheckedModeBanner: false,
-//       //home: ProfilePage(),
-//     );
-//   }
-// }
-
-// class ProfilePage extends StatelessWidget{
-//   String name, email, location, phone;
-//   @override
-//   Widget build(BuildContext context) {
-//     // TODO: implement build
-//     return HomePage(name: name, email: email, location: location, phone: phone);
-//   }
-
-// }
-
+import 'package:firebase_core/firebase_core.dart';
 class InfoCard extends StatelessWidget {
   // the values we need
   final String placeholder;
@@ -68,6 +46,8 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.green,
+        title: Text('Swif⚡ype',style: TextStyle(color: Colors.black),),
         actions: [
           IconButton(
             icon: Icon(
@@ -156,17 +136,45 @@ class HomePage extends StatelessWidget {
               ],
             ),
               SizedBox(height: 30),
-            Row(
-              children: [
-                SizedBox(width: 20),
-                Icon(Icons.delete, color: Colors.black),
-                SizedBox(width: 20),
-                Text("Delete Account", style: TextStyle(color: Color.fromARGB(255, 238, 28, 13), fontSize: 22, fontWeight: FontWeight.bold
-                )),
-                SizedBox(width: 120),
-                Icon(Icons.arrow_forward_ios, color: Colors.black),   
-              ],
-            ), 
+           GestureDetector(
+              onTap: (){
+                showDialog(context: context, builder: (context){
+                    return AlertDialog(
+                      title: Text("Are you sure you want to delete your accounnt?"),
+                      actions: [
+                        TextButton(
+                          onPressed: (){
+                            Navigator.pop(context);
+                          },
+                          child: Text("No", style: TextStyle(color: Colors.green)),
+                        ),
+                        TextButton(
+                          onPressed: ()async{
+                            CollectionReference user = FirebaseFirestore.instance.collection('users');
+                            // Future deleteuser() {
+                              // FirebaseFirestore.instance.collection("user").doc(user.uid).delete();
+                              //userCollection.document(uid).delete();
+                            // }
+                            Navigator.pop(context);
+                          },
+                          child: Text("Yes",style: TextStyle(color: Colors.green),),
+                        ),
+                      ],
+                    );
+                  });
+              },
+              child: Row(
+                children: [
+                  SizedBox(width: 20),
+                  Icon(Icons.delete, color: Colors.black),
+                  SizedBox(width: 20),
+                  Text("Delete Account", style: TextStyle(color: Color.fromARGB(255, 238, 28, 13), fontSize: 22, fontWeight: FontWeight.bold
+                  )),
+                  SizedBox(width: 120),
+                  Icon(Icons.arrow_forward_ios, color: Colors.black),   
+                ],
+              ),
+            ),
 
             ],
           ),

@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class EditProfilePage extends StatefulWidget {
-  
   @override
   _EditProfilePageState createState() => _EditProfilePageState();
 }
@@ -26,14 +25,17 @@ class _EditProfilePageState extends State<EditProfilePage> {
   @override
   initState(){
     super.initState();
-     CollectionReference users = FirebaseFirestore.instance.collection('user');
+    CollectionReference users = FirebaseFirestore.instance.collection('user');
     FirebaseFirestore.instance.collection("user").doc(user.uid).get().then((value) {
       _name.text=value['name'];
       _email.text=value['email'];
       _location.text=value['location'];
-      _phone.text=value['phone'];});
+      _phone.text=value['phone'];
+      _email.text=value['email'];
+      
+    });
 
-    _email= TextEditingController(text:user.email);
+    // _email= TextEditingController(text:user.email);
 
 
   }
@@ -41,12 +43,14 @@ class _EditProfilePageState extends State<EditProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        backgroundColor: Colors.green,
+        title: Text('Swif⚡ype',style: TextStyle(color: Colors.black),),
+        // backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 1,
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,
-            color: Colors.green,
+            color: Colors.black,
           ),
           onPressed: () {
             Navigator.pop(context);
@@ -106,9 +110,18 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             ),
                             color: Colors.green,
                           ),
-                          child: Icon(
-                            Icons.edit,
-                            color: Colors.white,
+                          child: GestureDetector(
+                            onTap: () {
+                              // Navigator.push(
+                              //   context,
+                              //   MaterialPageRoute(
+                              //       builder: (context) => ProfileScree()),
+                              // );
+                            },
+                            child: Icon(
+                              Icons.edit,
+                              color: Colors.white,
+                            ),
                           ),
                         )
                       ),

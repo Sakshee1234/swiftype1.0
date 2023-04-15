@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:creationofswiftype/model/word_dic.dart';
 import 'package:creationofswiftype/pages/acc3.dart';
@@ -42,13 +41,17 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.green,
-        title: Text("Your Profile", style: TextStyle(fontSize: 22)),
+        title: Text('Swif⚡ype',style: TextStyle(color: Colors.black),),
+        // backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        elevation: 1,
         leading: IconButton(
-          onPressed: () {},
           icon: Icon(
             Icons.arrow_back,
-            color: Colors.white,
+            color: Colors.black,
           ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
       ),
       body: StreamBuilder(
@@ -66,11 +69,11 @@ class _ProfilePageState extends State<ProfilePage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       SizedBox(
-                        height: 20,),
-                        CircleAvatar(
-                          radius: 50,
-                          backgroundImage: AssetImage('images/pfp.jfif'),
-                        ),
+                        height: 120,),
+                        // CircleAvatar(
+                        //   radius: 50,
+                        //   backgroundImage: AssetImage('images/pfp.jfif'),
+                        // ),
                         Text(
                           p.name, style: TextStyle(
                               fontSize: 40,

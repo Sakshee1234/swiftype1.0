@@ -38,7 +38,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-
+    // packagingOptions {
+    // exclude 'META-INF/services/javax.annotation.processing.Processor'
+    // }
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }

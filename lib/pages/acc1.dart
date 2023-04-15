@@ -93,14 +93,14 @@ class _SettingPageState extends State<Settingpage> {
     // return Consumer(
     //   builder: (context, ThemeModel themeNotifier, child){
        return Scaffold(
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.green,
-            onPressed: (){
-              darkthemetoggle();
-            },
-            tooltip: 'Increment',
-            child: const Icon(Icons.lightbulb_outline),
-            ),
+        // floatingActionButton: FloatingActionButton(
+        //   backgroundColor: Colors.green,
+        //     onPressed: (){
+        //       darkthemetoggle();
+        //     },
+        //     tooltip: 'Increment',
+        //     child: const Icon(Icons.lightbulb_outline),
+        //     ),
         body: Container(
           padding: const EdgeInsets.all(10),
           child: ListView(
