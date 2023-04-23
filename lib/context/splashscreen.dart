@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 import '../auth.dart';
 
-
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -12,44 +11,46 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   @override
   void initState() {
     // TODO: implement initState  -->for short time
     super.initState();
-    Timer(Duration(seconds:3),(){
-      Navigator.pushReplacement(context,MaterialPageRoute(builder:(context)=>AuthPage()));
+    Timer(Duration(seconds: 5), () {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => AuthPage()));
     });
   }
+
   @override
-  Widget build(BuildContext context) 
-  {
+  Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [SizedBox(height:350),
-          Center(
+      backgroundColor: Color.fromARGB(255, 3, 44, 46),
+      body: Column(children: [
+        SizedBox(height: 350),
+        Center(
           child: Container(
-            child: Text('Swif⚡ype',
-            style:TextStyle(
-            color:Colors.green,
-            fontSize: 56,
-            fontWeight:FontWeight.bold,
-            ),
+            child: Text(
+              'Swif⚡ype',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 56,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ),
         SizedBox(height: 250),
-        Text('from'),
+        Text('from' ,style: TextStyle(color: Colors.yellow)),
         SizedBox(height: 10),
-        Text('ASV',style:TextStyle(
-          color:Colors.green,
-          fontSize: 30,
-          fontWeight:FontWeight.bold,
-        ),),]
-
-        
-      ),
-      
+        Text(
+          'ASV',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 30,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ]),
     );
   }
 }

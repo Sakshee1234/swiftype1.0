@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class myTextField extends StatelessWidget {
+  
   final controller;
   final String hintText;
   final bool obscureText;
@@ -21,17 +22,17 @@ class myTextField extends StatelessWidget {
           enabledBorder: OutlineInputBorder(
             //before clicking
             borderSide: BorderSide(
-              color: Colors.green,
+              color: Colors.white,
             ),
           ),
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(
-              color: Colors.green,
+              color: Colors.white,
             ),
           ),
           hintText: hintText,
           hintStyle: TextStyle(
-            color: Colors.green[300],
+            color: Colors.white,
           ),
         ),
       ),

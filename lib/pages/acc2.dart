@@ -12,39 +12,44 @@ class EditProfilePage extends StatefulWidget {
 }
 
 class _EditProfilePageState extends State<EditProfilePage> {
-  FirebaseAuth auth=FirebaseAuth.instance;
-  User user=FirebaseAuth.instance.currentUser!;
+  FirebaseAuth auth = FirebaseAuth.instance;
+  User user = FirebaseAuth.instance.currentUser!;
   TextEditingController _name = new TextEditingController();
   TextEditingController _email = new TextEditingController();
   TextEditingController _location = new TextEditingController();
   TextEditingController _phone = new TextEditingController();
   // QuerySnapshot userid=await FirebaseFirestore.instance.collection('user').where('UID',isEqualTo: user.uid).limit(1).get();
-   
+
   bool showPassword = false;
   //FirebaseFirestore firestore = FirebaseFirestore.instance;
   @override
-  initState(){
+  initState() {
     super.initState();
     CollectionReference users = FirebaseFirestore.instance.collection('user');
-    FirebaseFirestore.instance.collection("user").doc(user.uid).get().then((value) {
-      _name.text=value['name'];
-      _email.text=value['email'];
-      _location.text=value['location'];
-      _phone.text=value['phone'];
-      _email.text=value['email'];
-      
+    FirebaseFirestore.instance
+        .collection("user")
+        .doc(user.uid)
+        .get()
+        .then((value) {
+      _name.text = value['name'];
+      _email.text = value['email'];
+      _location.text = value['location'];
+      _phone.text = value['phone'];
+      _email.text = value['email'];
     });
 
     // _email= TextEditingController(text:user.email);
-
-
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.green,
-        title: Text('Swif⚡ype',style: TextStyle(color: Colors.black),),
+        title: Text(
+          'Swif⚡ype',
+          style: TextStyle(color: Colors.black),
+        ),
         // backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 1,
         leading: IconButton(
@@ -123,8 +128,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               color: Colors.white,
                             ),
                           ),
-                        )
-                      ),
+                        )),
                   ],
                 ),
               ),
@@ -132,72 +136,70 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 height: 35,
               ),
               Center(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(bottom: 35.0),
-              child: TextField(
-                controller: _name,
-                decoration: InputDecoration(
-                    contentPadding: EdgeInsets.only(bottom: 3),
-                    labelText: 'Full Name',
-                    
-                    floatingLabelBehavior: FloatingLabelBehavior.always,
-                    hintStyle: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    )),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 35.0),
-              child: TextField(
-                controller: _email,
-                decoration: InputDecoration(
-                    contentPadding: EdgeInsets.only(bottom: 3),
-                    labelText: 'E-mail',
-                    floatingLabelBehavior: FloatingLabelBehavior.always,
-                    hintStyle: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    )),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 35.0),
-              child: TextField(
-                controller: _location,
-                decoration: InputDecoration(
-                    contentPadding: EdgeInsets.only(bottom: 3),
-                    labelText: 'Location',
-                    floatingLabelBehavior: FloatingLabelBehavior.always,
-                    hintStyle: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    )),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 35.0),
-              child: TextField(
-                controller: _phone,
-                decoration: InputDecoration(
-                    contentPadding: EdgeInsets.only(bottom: 3),
-                    labelText: 'Phone',
-                    floatingLabelBehavior: FloatingLabelBehavior.always,
-                    hintStyle: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    )),
-              ),
-            ),
-          ],
-        )
-      ),
+                  child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 35.0),
+                    child: TextField(
+                      controller: _name,
+                      decoration: InputDecoration(
+                          contentPadding: EdgeInsets.only(bottom: 3),
+                          labelText: 'Full Name',
+                          floatingLabelBehavior: FloatingLabelBehavior.always,
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          )),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 35.0),
+                    child: TextField(
+                      controller: _email,
+                      decoration: InputDecoration(
+                          contentPadding: EdgeInsets.only(bottom: 3),
+                          labelText: 'E-mail',
+                          floatingLabelBehavior: FloatingLabelBehavior.always,
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          )),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 35.0),
+                    child: TextField(
+                      controller: _location,
+                      decoration: InputDecoration(
+                          contentPadding: EdgeInsets.only(bottom: 3),
+                          labelText: 'Location',
+                          floatingLabelBehavior: FloatingLabelBehavior.always,
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          )),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 35.0),
+                    child: TextField(
+                      controller: _phone,
+                      decoration: InputDecoration(
+                          contentPadding: EdgeInsets.only(bottom: 3),
+                          labelText: 'Phone',
+                          floatingLabelBehavior: FloatingLabelBehavior.always,
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          )),
+                    ),
+                  ),
+                ],
+              )),
               // buildTextField("Full Name", _name),
               // buildTextField("E-mail", _email),
               // buildTextField("Location", _location),
@@ -213,15 +215,17 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     child: OutlinedButton(
                       style: OutlinedButton.styleFrom(
                         padding: EdgeInsets.symmetric(horizontal: 50),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20)),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20)),
                       ),
-                    onPressed: () {Navigator.pop(context);},
-                    child: Text("CANCEL",
-                        style: TextStyle(
-                            fontSize: 14,
-                            letterSpacing: 2.2,
-                            color: Colors.black)),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: Text("CANCEL",
+                          style: TextStyle(
+                              fontSize: 14,
+                              letterSpacing: 2.2,
+                              color: Colors.black)),
                     ),
                   ),
                   SizedBox(height: 50),
@@ -229,42 +233,54 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     child: OutlinedButton(
                       style: OutlinedButton.styleFrom(
                         padding: EdgeInsets.symmetric(horizontal: 50),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20)),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20)),
                       ),
-                     onPressed: () async{
-                      CollectionReference users = FirebaseFirestore.instance.collection('user');
-                      FirebaseFirestore.instance.collection("user").doc(user.uid).set({"name":_name.text,
-                      'email':_email.text,
-                      'location': _location.text,
-                      'phone': _phone.text,
-                      'UID':user.uid 
-                      });
-                      // if(users==null)
-                      // {
-                      //   users.add({
-                      //       'name': _name.text,
-                      //       'email': _email.text,
-                      //       'location': _location.text,
-                      //       'phone': _phone.text,
-                      //       'UID':user.uid
-                      //     });
-                      // }
-                      // else
-                      // {
-                      //   final users = await FirebaseAuth.instance.currentUser!; 
-                      // }
-                      Navigator.push(
-                        context, MaterialPageRoute(builder: (BuildContext context){
-                          return HomePage(name: _name.text, email: _email.text, location: _location.text, phone: _phone.text);
-                        },),
-                      );
-                    },
-                    child: Text("SAVE",
-                        style: TextStyle(
-                            fontSize: 14,
-                            letterSpacing: 2.2,
-                            color: Colors.black)),
+                      onPressed: () async {
+                        CollectionReference users =
+                            FirebaseFirestore.instance.collection('user');
+                        FirebaseFirestore.instance
+                            .collection("user")
+                            .doc(user.uid)
+                            .set({
+                          "name": _name.text,
+                          'email': _email.text,
+                          'location': _location.text,
+                          'phone': _phone.text,
+                          'UID': user.uid
+                        });
+                        // if(users==null)
+                        // {
+                        //   users.add({
+                        //       'name': _name.text,
+                        //       'email': _email.text,
+                        //       'location': _location.text,
+                        //       'phone': _phone.text,
+                        //       'UID':user.uid
+                        //     });
+                        // }
+                        // elseser!;
+                        // {
+                        //   final users = await FirebaseAuth.instance.currentU
+                        // }
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (BuildContext context) {
+                              return HomePage(
+                                  name: _name.text,
+                                  email: _email.text,
+                                  location: _location.text,
+                                  phone: _phone.text);
+                            },
+                          ),
+                        );
+                      },
+                      child: Text("SAVE",
+                          style: TextStyle(
+                              fontSize: 14,
+                              letterSpacing: 2.2,
+                              color: Colors.black)),
                     ),
                   ),
                 ],
@@ -278,73 +294,73 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
   Widget buildTextField(BuildContext context) {
     return Scaffold(
-      // body: Center(
-      //   child: Column(
-      //     children: [
-      //       Padding(
-      //         padding: const EdgeInsets.only(bottom: 35.0),
-      //         child: TextField(
-      //           controller: _name,
-      //           decoration: InputDecoration(
-      //               contentPadding: EdgeInsets.only(bottom: 3),
-      //               labelText: 'Full Name',
-      //               floatingLabelBehavior: FloatingLabelBehavior.always,
-      //               hintStyle: TextStyle(
-      //                 fontSize: 16,
-      //                 fontWeight: FontWeight.bold,
-      //                 color: Colors.black,
-      //               )),
-      //         ),
-      //       ),
-      //       Padding(
-      //         padding: const EdgeInsets.only(bottom: 35.0),
-      //         child: TextField(
-      //           controller: _email,
-      //           decoration: InputDecoration(
-      //               contentPadding: EdgeInsets.only(bottom: 3),
-      //               labelText: 'E-mail',
-      //               floatingLabelBehavior: FloatingLabelBehavior.always,
-      //               hintStyle: TextStyle(
-      //                 fontSize: 16,
-      //                 fontWeight: FontWeight.bold,
-      //                 color: Colors.black,
-      //               )),
-      //         ),
-      //       ),
-      //       Padding(
-      //         padding: const EdgeInsets.only(bottom: 35.0),
-      //         child: TextField(
-      //           controller: _location,
-      //           decoration: InputDecoration(
-      //               contentPadding: EdgeInsets.only(bottom: 3),
-      //               labelText: 'Location',
-      //               floatingLabelBehavior: FloatingLabelBehavior.always,
-      //               hintStyle: TextStyle(
-      //                 fontSize: 16,
-      //                 fontWeight: FontWeight.bold,
-      //                 color: Colors.black,
-      //               )),
-      //         ),
-      //       ),
-      //       Padding(
-      //         padding: const EdgeInsets.only(bottom: 35.0),
-      //         child: TextField(
-      //           controller: _phone,
-      //           decoration: InputDecoration(
-      //               contentPadding: EdgeInsets.only(bottom: 3),
-      //               labelText: 'Phone',
-      //               floatingLabelBehavior: FloatingLabelBehavior.always,
-      //               hintStyle: TextStyle(
-      //                 fontSize: 16,
-      //                 fontWeight: FontWeight.bold,
-      //                 color: Colors.black,
-      //               )),
-      //         ),
-      //       ),
-      //     ],
-      //   )
-      // )
-    );
+        // body: Center(
+        //   child: Column(
+        //     children: [
+        //       Padding(
+        //         padding: const EdgeInsets.only(bottom: 35.0),
+        //         child: TextField(
+        //           controller: _name,
+        //           decoration: InputDecoration(
+        //               contentPadding: EdgeInsets.only(bottom: 3),
+        //               labelText: 'Full Name',
+        //               floatingLabelBehavior: FloatingLabelBehavior.always,
+        //               hintStyle: TextStyle(
+        //                 fontSize: 16,
+        //                 fontWeight: FontWeight.bold,
+        //                 color: Colors.black,
+        //               )),
+        //         ),
+        //       ),
+        //       Padding(
+        //         padding: const EdgeInsets.only(bottom: 35.0),
+        //         child: TextField(
+        //           controller: _email,
+        //           decoration: InputDecoration(
+        //               contentPadding: EdgeInsets.only(bottom: 3),
+        //               labelText: 'E-mail',
+        //               floatingLabelBehavior: FloatingLabelBehavior.always,
+        //               hintStyle: TextStyle(
+        //                 fontSize: 16,
+        //                 fontWeight: FontWeight.bold,
+        //                 color: Colors.black,
+        //               )),
+        //         ),
+        //       ),
+        //       Padding(
+        //         padding: const EdgeInsets.only(bottom: 35.0),
+        //         child: TextField(
+        //           controller: _location,
+        //           decoration: InputDecoration(
+        //               contentPadding: EdgeInsets.only(bottom: 3),
+        //               labelText: 'Location',
+        //               floatingLabelBehavior: FloatingLabelBehavior.always,
+        //               hintStyle: TextStyle(
+        //                 fontSize: 16,
+        //                 fontWeight: FontWeight.bold,
+        //                 color: Colors.black,
+        //               )),
+        //         ),
+        //       ),
+        //       Padding(
+        //         padding: const EdgeInsets.only(bottom: 35.0),
+        //         child: TextField(
+        //           controller: _phone,
+        //           decoration: InputDecoration(
+        //               contentPadding: EdgeInsets.only(bottom: 3),
+        //               labelText: 'Phone',
+        //               floatingLabelBehavior: FloatingLabelBehavior.always,
+        //               hintStyle: TextStyle(
+        //                 fontSize: 16,
+        //                 fontWeight: FontWeight.bold,
+        //                 color: Colors.black,
+        //               )),
+        //         ),
+        //       ),
+        //     ],
+        //   )
+        // )
+        );
 
     // if(labelText=="Full Name"){
     //   onChanged: (text1){

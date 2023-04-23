@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:creationofswiftype/pages/acc1.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+
 class InfoCard extends StatelessWidget {
   // the values we need
   final String placeholder;
@@ -41,25 +43,31 @@ class InfoCard extends StatelessWidget {
 
 class HomePage extends StatelessWidget {
   String name, email, location, phone;
-  HomePage({required this.name, required this.email, required this.location, required this.phone});
+  HomePage(
+      {required this.name,
+      required this.email,
+      required this.location,
+      required this.phone});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.green,
-        title: Text('Swif⚡ype',style: TextStyle(color: Colors.black),),
-        actions: [
-          IconButton(
-            icon: Icon(
-              Icons.arrow_back,
-              color: Colors.green,
-              ),
-              onPressed: () {
-                Navigator.pop(context);
-              },
+        appBar: AppBar(
+            backgroundColor: Colors.green,
+            title: Text(
+              'Swif⚡ype',
+              style: TextStyle(color: Colors.black),
             ),
-          ]
-        ),
+            actions: [
+              IconButton(
+                icon: Icon(
+                  Icons.arrow_back,
+                  color: Colors.green,
+                ),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ]),
         backgroundColor: Colors.white,
         body: SafeArea(
           minimum: const EdgeInsets.only(top: 40),
@@ -70,7 +78,8 @@ class HomePage extends StatelessWidget {
                 backgroundImage: AssetImage('images/pfp.jfif'),
               ),
               Text(
-                name, style: TextStyle(
+                name,
+                style: TextStyle(
                     fontSize: 40,
                     color: Colors.black,
                     letterSpacing: 2.5,
@@ -96,86 +105,111 @@ class HomePage extends StatelessWidget {
 
               // we will be creating a new widget name info carrd
 
-              InfoCard(placeholder: phone, icon: Icons.phone, onPressed: () async {}),
-              InfoCard(placeholder: location, icon: Icons.location_city, onPressed: () async {}),
-              InfoCard(placeholder: email, icon: Icons.email, onPressed: () async {}),
+              InfoCard(
+                  placeholder: phone,
+                  icon: Icons.phone,
+                  onPressed: () async {}),
+              InfoCard(
+                  placeholder: location,
+                  icon: Icons.location_city,
+                  onPressed: () async {}),
+              InfoCard(
+                  placeholder: email,
+                  icon: Icons.email,
+                  onPressed: () async {}),
               SizedBox(height: 30),
               Row(
-              children: [
-                Center(
+                children: [
+                  Center(
                     child: OutlinedButton(
                       style: OutlinedButton.styleFrom(
                         padding: EdgeInsets.symmetric(horizontal: 172),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20)),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20)),
                       ),
-                    onPressed: (){
-                      // CollectionReference users = firestore.collection('users');
-                      // await users.add({
-                      //   'name': 'Aakriti'
-                      // });
-                      // await users.doc("profile123").set({
-                      //   'name': 'Aakriti'
-                      // });
-                      // Map <String,dynamic> data = {"feild1": _name.text, "feild2": _email.text, "feild3": _location.text, "feild4": _phone.text};
-                      // Firestore.instance.collection("test").add(data);
-                      // Navigator.push(
-                  // context, MaterialPageRoute(builder: (BuildContext context){
-                  //   return Settingpage();
-                  // }));
-                    Navigator.pop(context);
-                    Navigator.pop(context);
-                    },
-                    child: Text("DONE",
-                        style: TextStyle(
-                            fontSize: 14,
-                            letterSpacing: 2.2,
-                            color: Colors.black)),
+                      onPressed: () {
+                        // CollectionReference users = firestore.collection('users');
+                        // await users.add({
+                        //   'name': 'Aakriti'
+                        // });
+                        // await users.doc("profile123").set({
+                        //   'name': 'Aakriti'
+                        // });
+                        // Map <String,dynamic> data = {"feild1": _name.text, "feild2": _email.text, "feild3": _location.text, "feild4": _phone.text};
+                        // Firestore.instance.collection("test").add(data);
+                        // Navigator.push(
+                        // context, MaterialPageRoute(builder: (BuildContext context){
+                        //   return Settingpage();
+                        // }));
+                        Navigator.pop(context);
+                        Navigator.pop(context);
+                      },
+                      child: Text("DONE",
+                          style: TextStyle(
+                              fontSize: 14,
+                              letterSpacing: 2.2,
+                              color: Colors.black)),
                     ),
-                  ),   
-              ],
-            ),
-              SizedBox(height: 30),
-           GestureDetector(
-              onTap: (){
-                showDialog(context: context, builder: (context){
-                    return AlertDialog(
-                      title: Text("Are you sure you want to delete your accounnt?"),
-                      actions: [
-                        TextButton(
-                          onPressed: (){
-                            Navigator.pop(context);
-                          },
-                          child: Text("No", style: TextStyle(color: Colors.green)),
-                        ),
-                        TextButton(
-                          onPressed: ()async{
-                            CollectionReference user = FirebaseFirestore.instance.collection('users');
-                            // Future deleteuser() {
-                              // FirebaseFirestore.instance.collection("user").doc(user.uid).delete();
-                              //userCollection.document(uid).delete();
-                            // }
-                            Navigator.pop(context);
-                          },
-                          child: Text("Yes",style: TextStyle(color: Colors.green),),
-                        ),
-                      ],
-                    );
-                  });
-              },
-              child: Row(
-                children: [
-                  SizedBox(width: 20),
-                  Icon(Icons.delete, color: Colors.black),
-                  SizedBox(width: 20),
-                  Text("Delete Account", style: TextStyle(color: Color.fromARGB(255, 238, 28, 13), fontSize: 22, fontWeight: FontWeight.bold
-                  )),
-                  SizedBox(width: 120),
-                  Icon(Icons.arrow_forward_ios, color: Colors.black),   
+                  ),
                 ],
               ),
-            ),
+              SizedBox(height: 30),
+              GestureDetector(
+                onTap: () {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: Text(
+                              "Are you sure you want to delete your accounnt?"),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: Text("No",
+                                  style: TextStyle(color: Colors.green)),
+                            ),
+                            TextButton(
+                              onPressed: () async {
+                                // CollectionReference user = FirebaseFirestore
+                                //     .instance
+                                //     .collection('users');
+                                // // user.delete();
+                                final CollectionReference users =
+                                    FirebaseFirestore.instance
+                                        .collection('user');
+                                User user = FirebaseAuth.instance.currentUser!;
+                                Future deleteuser() {
+                                  return users.doc(user.uid).delete();
+                                }
 
+                                Navigator.pop(context);
+                              },
+                              child: Text(
+                                "Yes",
+                                style: TextStyle(color: Colors.green),
+                              ),
+                            ),
+                          ],
+                        );
+                      });
+                },
+                child: Row(
+                  children: [
+                    SizedBox(width: 20),
+                    Icon(Icons.delete, color: Colors.black),
+                    SizedBox(width: 20),
+                    Text("Delete Account",
+                        style: TextStyle(
+                            color: Color.fromARGB(255, 238, 28, 13),
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold)),
+                    SizedBox(width: 120),
+                    Icon(Icons.arrow_forward_ios, color: Colors.black),
+                  ],
+                ),
+              ),
             ],
           ),
         ));
