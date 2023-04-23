@@ -1030,14 +1030,15 @@ class HomePageState extends State<HomePage> {
   User user = FirebaseAuth.instance.currentUser!;
   Future<void> addfromfirebase()
   async {
-     await FirebaseFirestore.instance.collection("words").where('UID',isEqualTo: user.uid).snapshots().listen((event) {
-      print(event);
-      event.docs.forEach((element) {
-        WordModel w = WordModel.fromJSON(element);
-        print(w.word);
-        _suggestions.add(w.word);
-      });
-      });
+      await FirebaseFirestore.instance
+      .collection("words")
+      .where('UID', isEqualTo: user.uid)
+      .get()
+      .then((querySnapshot) {
+    querySnapshot.docs.forEach((doc) {
+      _suggestions.add(doc.data()['word']);
+    });
+  });
   }
 
   @override
@@ -1098,39 +1099,7 @@ class HomePageState extends State<HomePage> {
                              },
                            ),
                    ),
-                  // SizedBox(
-                  //   width: 350, // <-- TextField width
-                  //   //height: 500, // <-- TextField height
-                  //   child: Container(
-                  //     padding: EdgeInsets.all(10),
-                  //     decoration: BoxDecoration(
-                  //       color: Colors.white,
-                  //       borderRadius: BorderRadius.circular(10),
-                  //     ),
-                  //     child: TypeAheadField(
-                  //       textFieldConfiguration: TextFieldConfiguration(
-                  //         maxLines: 10,
-                  //         controller: typing,
-                  //         decoration: InputDecoration(
-                  //           hintText: 'Start Typing...',
-                  //           border: InputBorder.none,
-                  //         ),
-                  //       ),
-                  //       suggestionsCallback: (pattern) async {
-                  //         if (pattern.isEmpty) {
-                  //           return [];
-                  //         }
-                  //         return await _getAutocompleteSuggestions(pattern);
-                  //       },
-                  //       itemBuilder: (context, suggestion) {
-                  //         return ListTile(title: Text(suggestion));
-                  //       },
-                  //       onSuggestionSelected: (suggestion) {
-                  //         typing.text = suggestion;
-                  //       },
-                  //     ),
-                  //   ),
-                  // ),
+                 
                   Column(
                     children: [
                       ElevatedButton(
