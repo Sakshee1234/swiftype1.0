@@ -1,8 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+
+import '../model/word_dic.dart';
  List<String> _suggestions = ["ability",
 "able",
 "about",
@@ -1009,11 +1013,12 @@ class addword{
   {
     _suggestions.add(word);
   }
-  void addfromfirebase()
+  void remove(String word)
   {
-      
+    _suggestions.remove(word);
   }
 }
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
   @override
@@ -1022,15 +1027,30 @@ class HomePage extends StatefulWidget {
 
 class HomePageState extends State<HomePage> {
   final TextEditingController typing = TextEditingController();
+  User user = FirebaseAuth.instance.currentUser!;
+  Future<void> addfromfirebase()
+  async {
+     await FirebaseFirestore.instance.collection("words").where('UID',isEqualTo: user.uid).snapshots().listen((event) {
+      print(event);
+      event.docs.forEach((element) {
+        WordModel w = WordModel.fromJSON(element);
+        print(w.word);
+        _suggestions.add(w.word);
+      });
+      });
+  }
 
   @override
   Widget build(BuildContext context) {
+    addfromfirebase();
     return Scaffold(
-        backgroundColor:  Color.fromARGB(255, 3, 44, 46),
+        backgroundColor:  Color.fromARGB(255, 52, 52, 52),
         body: SafeArea(
+          
           child: SingleChildScrollView(
             child: Center(
               child: Column(
+                
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
@@ -1049,7 +1069,6 @@ class HomePageState extends State<HomePage> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                      child: TypeAheadField(
-        
                              textFieldConfiguration: TextFieldConfiguration(
                               maxLines: 10,
                                controller: typing,

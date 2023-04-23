@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.creationofswiftype">
    <application
-        android:label="creationofswiftype"
+        android:label="SwifType"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

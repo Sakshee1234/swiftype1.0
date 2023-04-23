@@ -147,6 +147,7 @@ class _DictionaryState extends State<Dictionary> {
                                             onPressed: () async {
                                               await FirestoreService()
                                                   .deleteWord(w.id);
+                                              d.remove(w.word);
                                               Navigator.pop(context);
                                             },
                                             child: Text('Yes',
