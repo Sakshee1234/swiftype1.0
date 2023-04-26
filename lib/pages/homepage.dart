@@ -1081,6 +1081,7 @@ class HomePageState extends State<HomePage> {
       }
     }
   }
+  
   Future<void> _showAddWordDialog(String word) async {
     //  Flushbar(
     //   message: 'Do you want to add "$word" to your dictionary?',
