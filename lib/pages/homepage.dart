@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-
+import '../firebaseservices.dart';
 import '../model/word_dic.dart';
  List<String> _suggestions = ["ability",
 "able",
@@ -1036,10 +1036,95 @@ class HomePageState extends State<HomePage> {
       .get()
       .then((querySnapshot) {
     querySnapshot.docs.forEach((doc) {
-      _suggestions.add(doc.data()['word']);
+      if(!_suggestions.contains(doc.data()['word']))
+      {
+        _suggestions.add(doc.data()['word']);
+      }
     });
   });
   }
+  // Future<void> _showAddWordDialog(String word) async {
+  //       final snackBar = SnackBar(
+  //     content: Text('Do you want to add "$word" to your dictionary?'),
+  //     action: SnackBarAction(
+  //       label: 'Yes',
+  //       onPressed: () async {
+  //         await FirestoreService()
+  //                       .insertWord(word, user.uid);
+  //         _suggestions.add(word);
+  //       },
+  //     ),
+  //     behavior: SnackBarBehavior.floating,
+  //   );
+  //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
+  // }
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  bool _isSnackbarDisplayed = false;
+  @override
+  void initState() {
+    super.initState();
+    typing.addListener(_onTypingValueChanged);
+  }
+  void _onTypingValueChanged() {
+    String text = typing.text;
+    int textLength = text.length;
+
+    if (textLength > 0 && text[textLength - 1] == ' ') {
+      
+      String lastWord = text.trim().split(' ').last;
+      print(lastWord);
+      print(!_suggestions.contains(lastWord));
+      if (!_suggestions.contains(lastWord)) {
+        // print(lastWord);
+        _showAddWordDialog(lastWord);
+      }
+    }
+  }
+  Future<void> _showAddWordDialog(String word) async {
+    //  Flushbar(
+    //   message: 'Do you want to add "$word" to your dictionary?',
+    //   mainButton: ElevatedButton(
+    //     child: Text(
+    //       'Yes',
+    //     ),
+    //     onPressed: () async {
+    //       await FirestoreService()
+    //                     .insertWord(word, user.uid);
+    //      if(!_suggestions.contains(word))
+    //      {
+    //        _suggestions.add(word);
+    //      }                        
+    //     },
+    //   ),
+    // )..show(context);
+      final snackBar = SnackBar(
+      content: Text('Do you want to add "$word" to your dictionary?'),
+      action: SnackBarAction(
+        label: 'Yes',
+        onPressed: () async {
+          await FirestoreService()
+                        .insertWord(word, user.uid);
+          _isSnackbarDisplayed = false;
+        },
+      ),
+      behavior: SnackBarBehavior.floating,
+      margin: EdgeInsets.all(50),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+  // void _showAddWordSnackBar(String word) {
+  //     SnackBar(
+  //       content: Text('Do you want to add "$word" to your dictionary?'),
+  //       action: SnackBarAction(
+  //         label: 'Add',
+  //         onPressed: () {
+  //           _suggestions.add(word);
+  //         },
+  //       ),
+        
+  //     );
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -1047,11 +1132,9 @@ class HomePageState extends State<HomePage> {
     return Scaffold(
         backgroundColor:  Color.fromARGB(255, 52, 52, 52),
         body: SafeArea(
-          
           child: SingleChildScrollView(
             child: Center(
-              child: Column(
-                
+              child: Column(  
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
@@ -1071,20 +1154,28 @@ class HomePageState extends State<HomePage> {
                       ),
                      child: TypeAheadField(
                              textFieldConfiguration: TextFieldConfiguration(
+                              // autocorrect: true,
                               maxLines: 10,
                                controller: typing,
                                decoration: InputDecoration(
                                  hintText: "Start typing...",
                                ),
                              ),
+                             
                              suggestionsCallback: (pattern) async {
                                var wordList = pattern.split(" ");
                                var lastWord = wordList.last;
+                               String text = typing.text;
+                                int textLength = text.length;
                                return _suggestions
                                    .where((word) => word.startsWith(lastWord))
-                                   .toList();
+                                   .toList().take(1);
+                              
                              },
                              itemBuilder: (context, suggestion) {
+
+                              String text = typing.text;
+                              int textLength = text.length;
                                return ListTile(
                                  title: Text(suggestion),
                                );
@@ -1095,8 +1186,9 @@ class HomePageState extends State<HomePage> {
                                var newText = typing.text.replaceAll(lastWord, suggestion);
                                typing.text = newText;
                                typing.selection = TextSelection.fromPosition(
-                                   TextPosition(offset: typing.text.length));
+                                  TextPosition(offset: typing.text.length));
                              },
+                            
                            ),
                    ),
                  
@@ -1120,3 +1212,7 @@ class HomePageState extends State<HomePage> {
         ));
   }
 }
+
+
+
+                              
