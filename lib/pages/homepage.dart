@@ -1109,7 +1109,7 @@ class HomePageState extends State<HomePage> {
         },
       ),
       behavior: SnackBarBehavior.floating,
-      margin: EdgeInsets.all(50),
+      margin: EdgeInsets.only(top:80),
     );
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
