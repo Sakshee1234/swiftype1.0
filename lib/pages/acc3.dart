@@ -17,18 +17,18 @@ class InfoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       child: Card(
-        color: Colors.white,
+        color: Color.fromARGB(255, 3, 0, 28),
         margin: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
         child: ListTile(
           leading: Icon(
             icon,
-            color: Colors.teal,
+            color: Colors.white,
           ),
           title: Text(
             placeholder,
             style: TextStyle(
-                color: Colors.teal,
-                fontSize: 18,
+                color: Colors.white,
+                fontSize: 19,
                 fontFamily: "Source Sans Pro"),
           ),
         ),
@@ -52,22 +52,26 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            backgroundColor: Colors.green,
-            title: Text(
-              'Swif⚡ype',
-              style: TextStyle(color: Colors.black),
-            ),
-            actions: [
-              IconButton(
-                icon: Icon(
-                  Icons.arrow_back,
-                  color: Colors.green,
-                ),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              ),
-            ]),
+          backgroundColor: Color.fromARGB(255, 3, 0, 28),
+          title: Text(
+            'SWIF⚡YPE',
+            style: TextStyle(
+                color: Colors.white,
+                letterSpacing: 0.6,
+                fontFamily: "Source Sans Pro"),
+          ),
+          // actions: [
+          //   IconButton(
+          //     icon: Icon(
+          //       Icons.arrow_back,
+          //       color: Colors.green,
+          //     ),
+          //     onPressed: () {
+          //       Navigator.pop(context);
+          //     },
+          //   ),
+          // ]
+        ),
         backgroundColor: Colors.white,
         body: SafeArea(
           minimum: const EdgeInsets.only(top: 40),
@@ -82,25 +86,25 @@ class HomePage extends StatelessWidget {
                 style: TextStyle(
                     fontSize: 40,
                     color: Colors.black,
-                    letterSpacing: 2.5,
+                    letterSpacing: -1.2,
                     fontWeight: FontWeight.bold,
                     fontFamily: "Source Sans Pro"),
               ),
-              Text(
-                "Flutter Developer",
-                style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.blueGrey,
-                    letterSpacing: 2.5,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: "Source Sans Pro"),
-              ),
+              // Text(
+              //   "Flutter Developer",
+              //   style: TextStyle(
+              //       fontSize: 20,
+              //       color: Colors.blueGrey,
+              //       letterSpacing: 2.5,
+              //       fontWeight: FontWeight.bold,
+              //       fontFamily: "Source Sans Pro"),
+              // ),
               SizedBox(
-                height: 60,
+                height: 35,
                 width: 200,
-                child: Divider(
-                  color: Colors.white,
-                ),
+                // child: Divider(
+                //   color: Colors.black,
+                // ),
               ),
 
               // we will be creating a new widget name info carrd
@@ -117,38 +121,33 @@ class HomePage extends StatelessWidget {
                   placeholder: email,
                   icon: Icons.email,
                   onPressed: () async {}),
-              SizedBox(height: 30),
+              SizedBox(height: 50),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Center(
-                    child: OutlinedButton(
-                      style: OutlinedButton.styleFrom(
-                        padding: EdgeInsets.symmetric(horizontal: 172),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20)),
+                    child: Center(
+                      child: OutlinedButton(
+                        style: OutlinedButton.styleFrom(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 50,
+                            vertical: 15,
+                          ),
+                          backgroundColor: Color.fromARGB(255, 255, 255, 255),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5)),
+                        ),
+                        onPressed: () {
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                        },
+                        child: Text("DONE",
+                            style: TextStyle(
+                                fontSize: 17,
+                                letterSpacing: 1,
+                                fontWeight: FontWeight.bold,
+                                color: Color.fromARGB(255, 3, 0, 28))),
                       ),
-                      onPressed: () {
-                        // CollectionReference users = firestore.collection('users');
-                        // await users.add({
-                        //   'name': 'Aakriti'
-                        // });
-                        // await users.doc("profile123").set({
-                        //   'name': 'Aakriti'
-                        // });
-                        // Map <String,dynamic> data = {"feild1": _name.text, "feild2": _email.text, "feild3": _location.text, "feild4": _phone.text};
-                        // Firestore.instance.collection("test").add(data);
-                        // Navigator.push(
-                        // context, MaterialPageRoute(builder: (BuildContext context){
-                        //   return Settingpage();
-                        // }));
-                        Navigator.pop(context);
-                        Navigator.pop(context);
-                      },
-                      child: Text("DONE",
-                          style: TextStyle(
-                              fontSize: 14,
-                              letterSpacing: 2.2,
-                              color: Colors.black)),
                     ),
                   ),
                 ],
@@ -168,7 +167,8 @@ class HomePage extends StatelessWidget {
                                 Navigator.pop(context);
                               },
                               child: Text("No",
-                                  style: TextStyle(color: Colors.green)),
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 17)),
                             ),
                             TextButton(
                               onPressed: () async {
@@ -188,7 +188,8 @@ class HomePage extends StatelessWidget {
                               },
                               child: Text(
                                 "Yes",
-                                style: TextStyle(color: Colors.green),
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 17),
                               ),
                             ),
                           ],
@@ -198,12 +199,14 @@ class HomePage extends StatelessWidget {
                 child: Row(
                   children: [
                     SizedBox(width: 20),
-                    Icon(Icons.delete, color: Colors.black),
+                    Icon(Icons.delete, color: Colors.red),
                     SizedBox(width: 20),
                     Text("Delete Account",
                         style: TextStyle(
-                            color: Color.fromARGB(255, 238, 28, 13),
+                            color: Color.fromARGB(255, 0, 0, 0),
                             fontSize: 22,
+                            fontFamily: 'Source Sans Pro',
+                            letterSpacing: -0.5,
                             fontWeight: FontWeight.bold)),
                     SizedBox(width: 120),
                     Icon(Icons.arrow_forward_ios, color: Colors.black),

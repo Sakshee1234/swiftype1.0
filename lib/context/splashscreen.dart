@@ -24,23 +24,31 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 3, 44, 46),
+      backgroundColor: Color.fromARGB(255, 3, 0, 28),
       body: Column(children: [
         SizedBox(height: 350),
         Center(
           child: Container(
             child: Text(
-              'Swif⚡ype',
+              'SWIF⚡YPE',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 56,
+                letterSpacing: 0.6,
                 fontWeight: FontWeight.bold,
+                fontFamily: 'Source Sans Pro',
               ),
             ),
           ),
         ),
         SizedBox(height: 250),
-        Text('from' ,style: TextStyle(color: Colors.yellow)),
+        Text(
+          'from',
+          style: TextStyle(
+              color: Colors.yellow,
+              fontSize: 18,
+              fontFamily: 'Source Sans Pro'),
+        ),
         SizedBox(height: 10),
         Text(
           'ASV',
@@ -48,6 +56,7 @@ class _SplashScreenState extends State<SplashScreen> {
             color: Colors.white,
             fontSize: 30,
             fontWeight: FontWeight.bold,
+            fontFamily: 'Source Sans Pro',
           ),
         ),
       ]),

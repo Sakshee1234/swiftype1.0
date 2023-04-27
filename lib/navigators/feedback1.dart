@@ -45,17 +45,21 @@ class _AddItemState extends State<AddItem> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.green,
+        backgroundColor: Color.fromARGB(255, 3, 0, 28),
         title: Text(
-          'Swif⚡ype',
-          style: TextStyle(color: Colors.black),
+          'SWIF⚡YPE',
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            letterSpacing: 0.6,
+          ),
         ),
         // backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 1,
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,
-            color: Colors.black,
+            color: Colors.white,
           ),
           onPressed: () {
             Navigator.pop(context);
@@ -73,23 +77,25 @@ class _AddItemState extends State<AddItem> {
                 decoration: InputDecoration(hintText: 'Enter your name'),
                 validator: (String? value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter the name';
+                    return 'Please enter your name';
                   }
 
                   return null;
                 },
               ),
+              SizedBox(height: 18),
               TextFormField(
                 controller: _controllerQuantity,
                 decoration: InputDecoration(hintText: 'Enter your email'),
                 validator: (String? value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter the email';
+                    return 'Please enter your email';
                   }
 
                   return null;
                 },
               ),
+              SizedBox(height: 18),
               IconButton(
                   onPressed: () async {
                     /*
@@ -139,7 +145,7 @@ class _AddItemState extends State<AddItem> {
                       //Some error occurred
                     }
                   },
-                  icon: Icon(Icons.image)),
+                  icon: Icon(Icons.image, color: Colors.black)),
               ElevatedButton(
                   onPressed: () async {
                     if (imageUrl.isEmpty) {
@@ -163,6 +169,7 @@ class _AddItemState extends State<AddItem> {
                       //Add a new item
                       _reference.add(dataToSend);
                     }
+                    //SizedBox(height: 180);
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -172,7 +179,15 @@ class _AddItemState extends State<AddItem> {
                       ),
                     );
                   },
-                  child: Text('Submit'))
+                  child: Text(
+                    'Submit',
+                    // backgroundColor: Color.fromARGB(255, 3, 0, 28),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      //backgroundColor: Color.fromARGB(255, 3, 0, 28),
+                    ),
+                  ))
             ],
           ),
         ),

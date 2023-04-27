@@ -1,7 +1,6 @@
 import 'package:creationofswiftype/navigators/feedback.dart';
 import 'package:creationofswiftype/pages/acc2.dart';
 import 'package:creationofswiftype/pages/acc4.dart';
-// import 'package:creationofswiftype/pages/theme_preference.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -21,16 +20,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // return ChangeNotifierProvider(
-      // create: (context) => ThemeSettings(),
-      // builder: (context, child) {
-      //   final settings = context.watch<ThemeSettings>();
-        //final settings = Provider.of<ThemeSettings>(context);
-        return MaterialApp(
-          title: 'Flutter Demo',
-          // theme: settings.currentTheme,
-          home: Settingpage(),
-        );
-      // },
+    // create: (context) => ThemeSettings(),
+    // builder: (context, child) {
+    //   final settings = context.watch<ThemeSettings>();
+    //final settings = Provider.of<ThemeSettings>(context);
+    return MaterialApp(
+      title: 'Flutter Demo',
+      // theme: settings.currentTheme,
+      home: Settingpage(),
+    );
+    // },
     // );
   }
 }
@@ -53,51 +52,13 @@ class _SettingPageState extends State<Settingpage> {
   }
 
   int _counter = 0;
-  // void _toggleTheme() {
-  //   final settings = Provider.of<ThemeSettings>(context, listen: false);
-  //   settings.toggleTheme();
-  // }
 
-  // onChangeFunction1(bool newValue1){
-  //   setState(() {
-  //     valNotify1 = newValue1;
-  //   });
-  // }
-
-  // onChangeFunction2(bool newValue2){
-  //   setState(() {
-  //     valNotify2 = newValue2;
-  //   });
-  // }
-
-  // yourprofnav(){
-  //   onPressed: () {
-  //     Navigator.push(
-  //       context, MaterialPageRoute(builder: (BuildContext context){
-  //         return EditProfilePage();
-  //       },
-  //       ),
-  //     );
-  //   };
-  // }
-
-  // youraccnav(){
-  //   onPressed: () {
-  //     Navigator.push(
-  //       context, MaterialPageRoute(builder: (BuildContext context){
-  //         return HomePage();
-  //       },
-  //       ),
-  //     );
-  //   };
-  // }
-  //String? language;
   @override
   Widget build(BuildContext context) {
     // return Consumer(
     //   builder: (context, ThemeModel themeNotifier, child){
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 3, 44, 46),
+      backgroundColor: Color.fromARGB(255, 255, 255, 255),
       // floatingActionButton: FloatingActionButton(
       //   backgroundColor: Colors.green,
       //   onPressed: _toggleTheme,
@@ -113,20 +74,31 @@ class _SettingPageState extends State<Settingpage> {
               children: [
                 Icon(
                   Icons.person,
-                  color: Colors.white,
+                  color: Color.fromARGB(255, 3, 0, 28),
                 ),
                 SizedBox(width: 10),
                 Text("Account",
-                    style: TextStyle(fontSize: 22, //fontWeight: FontWeight.bold ,
-                    color: Colors.white))
+                    style: TextStyle(
+                        fontSize: 22, //fontWeight: FontWeight.bold ,
+                        color: Color.fromARGB(255, 3, 0, 28),
+                        fontFamily: 'Source Sans Pro',
+                        fontWeight: FontWeight.bold))
               ],
             ),
-            Divider(height: 20, thickness: 1),
-            SizedBox(height: 10),
-            buildAccountOption(context, "Your Profile"),
-            buildAccountOption(context, "Manage Profile Settings"),
 
-            SizedBox(height: 50),
+            //Divider(height: 20, thickness: 1 / 2, color: Colors.red),
+            SizedBox(
+              height: 10,
+            ),
+
+            buildAccountOption(
+              context,
+              "Your Profile",
+            ),
+            //SizedBox(height: 50),
+
+            buildAccountOption(context, "Manage Profile Settings"),
+            SizedBox(height: 30),
             GestureDetector(
               onTap: () {
                 showDialog(
@@ -162,7 +134,11 @@ class _SettingPageState extends State<Settingpage> {
                                 onPressed: () {
                                   Navigator.pop(context);
                                 },
-                                child: Text('OK'))
+                                child: Text(
+                                  'OK',
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 17),
+                                ))
                           ],
                         ));
               },
@@ -171,20 +147,24 @@ class _SettingPageState extends State<Settingpage> {
                 children: [
                   Row(
                     children: [
-                      Icon(Icons.language_outlined, color: Colors.white),
+                      Icon(Icons.language_outlined,
+                          color: Color.fromARGB(255, 3, 0, 28)),
                       SizedBox(width: 8),
                       Text("Language Preference",
                           style: TextStyle(
-                              fontSize: 22, //fontWeight: FontWeight.bold,
-                              color: Colors.white)),
+                            fontSize: 22, //fontWeight: FontWeight.bold,
+                            color: Color.fromARGB(255, 3, 0, 28),
+                            fontFamily: 'Source Sans Pro',
+                            fontWeight: FontWeight.bold,
+                          )),
                     ],
                   ),
                   // SizedBox(width: 84),
-                  Icon(Icons.arrow_forward_ios, color: Colors.white),
+                  Icon(Icons.arrow_forward_ios,
+                      color: Color.fromARGB(255, 3, 0, 28)),
                 ],
               ),
             ),
-
             SizedBox(height: 50),
             GestureDetector(
               onTap: () {
@@ -196,22 +176,26 @@ class _SettingPageState extends State<Settingpage> {
                 children: [
                   Row(
                     children: [
-                      Icon(Icons.feedback_outlined, color: Colors.white),
+                      Icon(Icons.feedback_outlined,
+                          color: Color.fromARGB(255, 3, 0, 28)),
                       SizedBox(width: 10),
                       Text("Provide Feedback",
                           style: TextStyle(
                               fontSize: 22, //fontWeight: FontWeight.bold,
-                              color: Colors.white)),
+                              color: Color.fromARGB(255, 3, 0, 28),
+                              fontFamily: 'Source Sans Pro',
+                              fontWeight: FontWeight.bold)),
                     ],
                   ),
                   // SizedBox(width: 116),
-                  Icon(Icons.arrow_forward_ios, color: Colors.white),
+                  Icon(
+                    Icons.arrow_forward_ios,
+                    color: Color.fromARGB(255, 3, 0, 28),
+                  ),
                 ],
               ),
             ),
-
             SizedBox(height: 50),
-
             GestureDetector(
               onTap: () {
                 // showAboutDialog(context:context);
@@ -233,35 +217,23 @@ class _SettingPageState extends State<Settingpage> {
                 children: [
                   Row(
                     children: [
-                      Icon(Icons.info_outlined, color: Colors.white),
+                      Icon(Icons.info_outlined,
+                          color: Color.fromARGB(255, 3, 0, 28)),
                       SizedBox(width: 10),
                       Text("About",
                           style: TextStyle(
-                              fontSize: 22,//fontWeight: FontWeight.bold,
-                              color: Colors.white)),
+                              fontSize: 22, //fontWeight: FontWeight.bold,
+                              color: Color.fromARGB(255, 3, 0, 28),
+                              fontFamily: 'Source Sans Pro',
+                              fontWeight: FontWeight.bold)),
                     ],
                   ),
                   // SizedBox(width: 232),
-                  Icon(Icons.arrow_forward_ios, color: Colors.white),
+                  Icon(Icons.arrow_forward_ios,
+                      color: Color.fromARGB(255, 3, 0, 28)),
                 ],
               ),
             ),
-            // SizedBox(height: 40),
-            // Row(
-            //   children: [
-            //     //Icon(Icons.notifications_outlined, color: Colors.white),
-            //     //buildNotificationOption("Notifications", valNotify1, onChangeFunction1)
-            //   ],
-            // ),
-
-            // SizedBox(height: 20),
-            // Row(
-            //   children: [
-            //     //Icon(Icons.light_mode, color: Colors.white),
-            //     //buildNotificationOption("Theme Dark ", valNotify2, onChangeFunction2)
-            //   ],
-            // ),
-
             SizedBox(height: 50),
             GestureDetector(
               onTap: () {
@@ -269,14 +241,23 @@ class _SettingPageState extends State<Settingpage> {
                     context: context,
                     builder: (context) {
                       return AlertDialog(
-                        title: Text("Are you sure you want to logout?"),
+                        title: Text("Are you sure you want to logout?",
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontFamily: 'Source Sans Pro',
+                                fontWeight: FontWeight.bold,
+                                color: Color.fromARGB(255, 0, 0, 0))),
                         actions: [
                           TextButton(
                             onPressed: () {
                               Navigator.pop(context);
                             },
                             child: Text("No",
-                                style: TextStyle(color: Color.fromARGB(255, 3, 44, 46))),
+                                style: TextStyle(
+                                    fontFamily: 'Source Sans Pro',
+                                    fontSize: 17,
+                                    //fontWeight: FontWeight.bold,
+                                    color: Color.fromARGB(255, 0, 0, 0))),
                           ),
                           TextButton(
                             onPressed: () {
@@ -285,7 +266,11 @@ class _SettingPageState extends State<Settingpage> {
                             },
                             child: Text(
                               "Yes",
-                              style: TextStyle(color: Color.fromARGB(255, 3, 44, 46)),
+                              style: TextStyle(
+                                  fontFamily: 'Source Sans Pro',
+                                  // fontWeight: FontWeight.bold
+                                  fontSize: 17,
+                                  color: Color.fromARGB(255, 0, 0, 0)),
                             ),
                           ),
                         ],
@@ -297,17 +282,20 @@ class _SettingPageState extends State<Settingpage> {
                 children: [
                   Row(
                     children: [
-                      Icon(Icons.logout, color: Colors.white),
+                      Icon(Icons.logout, color: Color.fromARGB(255, 3, 0, 28)),
                       SizedBox(width: 10),
                       Text("Logout",
                           style: TextStyle(
                               fontSize: 22,
                               //fontWeight: FontWeight.bold,
-                              color: Colors.white)),
+                              color: Color.fromARGB(255, 3, 0, 28),
+                              fontFamily: 'Source Sans Pro',
+                              fontWeight: FontWeight.bold)),
                     ],
                   ),
                   // SizedBox(width: 220),
-                  Icon(Icons.arrow_forward_ios, color: Colors.white),
+                  Icon(Icons.arrow_forward_ios,
+                      color: Color.fromARGB(255, 3, 0, 28)),
                 ],
               ),
             ),
@@ -328,9 +316,12 @@ class _SettingPageState extends State<Settingpage> {
           children: [
             Text(title,
                 style: TextStyle(
-                    fontSize: 20,
-                    //fontWeight: FontWeight.w500,
-                    color: Colors.white)),
+                  fontSize: 20,
+                  //fontWeight: FontWeight.w500,
+                  color: Color.fromARGB(255, 3, 0, 28),
+                  fontFamily: 'Source Sans Pro',
+                  //fontWeight: FontWeight.bold
+                )),
             OutlinedButton(
               onPressed: () {
                 Navigator.push(
@@ -347,7 +338,8 @@ class _SettingPageState extends State<Settingpage> {
                   ),
                 );
               },
-              child: Icon(Icons.arrow_forward_ios, color: Colors.white),
+              child: Icon(Icons.arrow_forward_ios,
+                  color: Color.fromARGB(255, 3, 0, 28)),
             )
           ],
         ),

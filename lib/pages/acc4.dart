@@ -7,47 +7,32 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 
-// void main() async{
-//   WidgetsFlutterBinding.ensureInitialized();
-//   await Firebase.initializeApp();
-//   runApp(const MyApp());
-// }
-
-// class MyApp extends StatelessWidget {
-//   const MyApp({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'Flutter Demo',
-//       theme: ThemeData(
-//         primarySwatch: Colors.green,
-//       ),
-//       home: ProfilePage(),
-//     );
-//   }
-// }
-
 class ProfilePage extends StatefulWidget {
   @override
   State<ProfilePage> createState() => _ProfilePageState();
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  FirebaseAuth auth=FirebaseAuth.instance;
-  User user=FirebaseAuth.instance.currentUser!;
+  FirebaseAuth auth = FirebaseAuth.instance;
+  User user = FirebaseAuth.instance.currentUser!;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.green,
-        title: Text('Swif⚡ype',style: TextStyle(color: Colors.black),),
+        backgroundColor: Color.fromARGB(255, 3, 0, 28),
+        title: Text(
+          'SWIF⚡YPE',
+          style: TextStyle(
+              color: Colors.white,
+              letterSpacing: 0.6,
+              fontWeight: FontWeight.bold),
+        ),
         // backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 1,
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,
-            color: Colors.black,
+            color: Colors.white,
           ),
           onPressed: () {
             Navigator.pop(context);
@@ -55,53 +40,69 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
       ),
       body: StreamBuilder(
-        stream: FirebaseFirestore.instance.collection("user").where("UID", isEqualTo: user.uid).limit(1).snapshots(),
-        builder: (context, AsyncSnapshot snapshot){
-          if(snapshot.hasData){
+        stream: FirebaseFirestore.instance
+            .collection("user")
+            .where("UID", isEqualTo: user.uid)
+            .limit(1)
+            .snapshots(),
+        builder: (context, AsyncSnapshot snapshot) {
+          if (snapshot.hasData) {
             return ListView.builder(
               itemCount: snapshot.data.docs.length,
               shrinkWrap: true,
               itemBuilder: (context, index) {
-                ProfileModel p=ProfileModel.fromJSON(snapshot.data.docs[index]);
+                ProfileModel p =
+                    ProfileModel.fromJSON(snapshot.data.docs[index]);
                 // var data = snapshot.data.docs[index];
                 return Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       SizedBox(
-                        height: 120,),
-                        // CircleAvatar(
-                        //   radius: 50,
-                        //   backgroundImage: AssetImage('images/pfp.jfif'),
-                        // ),
-                        Text(
-                          p.name, style: TextStyle(
-                              fontSize: 40,
-                              color: Colors.black,
-                              letterSpacing: 2.5,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: "Source Sans Pro"),
+                        height: 120,
+                      ),
+                      // CircleAvatar(
+                      //   radius: 50,
+                      //   backgroundImage: AssetImage('images/pfp.jfif'),
+                      // ),
+                      Text(
+                        p.name,
+                        style: TextStyle(
+                            fontSize: 40,
+                            color: Colors.black,
+                            letterSpacing: -0.2,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: "Source Sans Pro"),
+                      ),
+                      SizedBox(
+                        height: 60,
+                        width: 200,
+                        child: Divider(
+                          color: Colors.white,
                         ),
-                        SizedBox(
-                          height: 60,
-                          width: 200,
-                          child: Divider(
-                            color: Colors.white,
-                          ),
-                        ),
-                        InfoCard(placeholder: p.phone, icon: Icons.phone, onPressed: () async {}),
-                        InfoCard(placeholder: p.location, icon: Icons.location_city, onPressed: () async {}),
-                        InfoCard(placeholder: p.email, icon: Icons.email, onPressed: () async {}),
-                  ],),
+                      ),
+                      InfoCard(
+                          placeholder: p.phone,
+                          icon: Icons.phone,
+                          onPressed: () async {}),
+                      InfoCard(
+                          placeholder: p.location,
+                          icon: Icons.location_city,
+                          onPressed: () async {}),
+                      InfoCard(
+                          placeholder: p.email,
+                          icon: Icons.email,
+                          onPressed: () async {}),
+                    ],
+                  ),
                 );
               },
             );
-          }
-          else{
+          } else {
             return CircularProgressIndicator();
           }
-         },
+        },
       ),
     );
-  } 
+  }
 }

@@ -45,7 +45,7 @@ class _MyAppState extends State<SS> {
       // Remove the debug banner
       debugShowCheckedModeBanner: false,
       title: 'ImageUpload',
-      theme: ThemeData(primarySwatch: Colors.green),
+      theme: ThemeData(primarySwatch: Colors.red),
       home: const HomePage(),
     );
   }
@@ -138,7 +138,7 @@ class _HomePageState extends State<HomePage> {
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,
-            color: Colors.green,
+            color: Color.fromARGB(255, 3, 0, 28),
           ),
           onPressed: () {
             Navigator.push( context, MaterialPageRoute(builder: (BuildContext context){

@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'context/splashscreen.dart';
 
-Future<void> main() async{
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(const MyApp());
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp( 
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: SplashScreen(),
     );
@@ -26,12 +26,13 @@ class Launchpg extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.green,
+        backgroundColor: Color.fromARGB(255, 3, 0, 28),
         body: Center(
           child: Text(
-            'Swif⚡ype',
+            'SWIF⚡YPE',
             style: TextStyle(
               fontWeight: FontWeight.bold,
+              letterSpacing: 0.6,
             ),
           ),
         ));

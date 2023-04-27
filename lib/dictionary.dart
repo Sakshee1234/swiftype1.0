@@ -1,77 +1,6 @@
-// import 'package:flutter/material.dart';
-
-// class Dictionary extends StatefulWidget {
-//   const Dictionary({Key? key}) : super(key: key);
-//   @override
-//   _DictionaryState createState() => _DictionaryState();
-// }
-
-// class _DictionaryState extends State<Dictionary> {
-//   final TextEditingController _textEditingController = TextEditingController();
-//   final List<String> _phrases = [];
-
-//   void _addPhrase(String phrase) {
-//     setState(() {
-//       _phrases.add(phrase);
-//       _textEditingController.clear(); // clear the text field
-//     });
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       // appBar: AppBar(
-//       //   title: const Text("My Dictionary"),
-//       //   backgroundColor: Colors.green,
-//       // ),
-//       body: ListView.builder(
-//         itemCount: _phrases.length,
-//         itemBuilder: (context, index) => Column(
-//           children: [
-//             ListTile(
-//               title: Text(_phrases[index]),
-//             ),
-//             const Divider(
-//               color: Colors.grey,
-//               height: 1,
-//               thickness: 0.4,
-//             ), // add a divider after each list tile
-//           ],
-//         ),
-//       ),
-//       floatingActionButton: FloatingActionButton(
-//         onPressed: () {
-//           showDialog(
-//             context: context,
-//             builder: (context) => AlertDialog(
-//               title: const Text('Enter the phrase'),
-//               content: TextField(
-//                 controller: _textEditingController,
-//                 decoration: const InputDecoration(
-//                   hintText: 'Enter the word/phrase',
-//                 ),
-//               ),
-//               actions: [
-//                 TextButton(
-//                   onPressed: () {
-//                     _addPhrase(_textEditingController.text);
-//                     Navigator.pop(context);
-//                   },
-//                   child: const Text('Add'),
-//                 ),
-//               ],
-//             ),
-//           );
-//         },
-//         child: const Icon(Icons.add),
-//         backgroundColor: Colors.green,
-//       ),
-//     );
-//   }
-// }
 import 'package:creationofswiftype/firebaseservices.dart';
 import 'package:creationofswiftype/model/word_dic.dart';
-import 'package:creationofswiftype/pages/add_note.dart';
+//import 'package:creationofswiftype/pages/add_note.dart';
 import 'package:creationofswiftype/pages/homepage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -96,11 +25,11 @@ class _DictionaryState extends State<Dictionary> {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   FirebaseAuth auth = FirebaseAuth.instance;
   User user = FirebaseAuth.instance.currentUser!;
-  addword d=addword();
+  addword d = addword();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 3, 44, 46),
+      backgroundColor: Color.fromARGB(255, 255, 255, 255),
       body: StreamBuilder(
         stream: FirebaseFirestore.instance
             .collection('words')
@@ -118,7 +47,7 @@ class _DictionaryState extends State<Dictionary> {
                     contentPadding:
                         EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                     textColor: Colors.white,
-                    tileColor: Color.fromARGB(255, 5, 70, 73),
+                    tileColor: Color.fromARGB(255, 2, 16, 41),
                     title: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -132,7 +61,12 @@ class _DictionaryState extends State<Dictionary> {
                             showDialog(
                                 context: context,
                                 builder: (context) => AlertDialog(
-                                      title: Text('Are you sure?'),
+                                      title: Text('Are you sure?',
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 20,
+                                              fontFamily: 'Source Sans Pro',
+                                              fontWeight: FontWeight.bold)),
                                       actions: [
                                         TextButton(
                                             onPressed: () {
@@ -140,8 +74,11 @@ class _DictionaryState extends State<Dictionary> {
                                             },
                                             child: Text(
                                               'No',
-                                              style:
-                                                  TextStyle(color: Colors.red),
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 16,
+                                                  fontFamily:
+                                                      'Source Sans Pro'),
                                             )),
                                         TextButton(
                                             onPressed: () async {
@@ -152,7 +89,10 @@ class _DictionaryState extends State<Dictionary> {
                                             },
                                             child: Text('Yes',
                                                 style: TextStyle(
-                                                    color: Color.fromARGB(255, 20, 153, 24)))),
+                                                    color: Colors.black,
+                                                    fontSize: 16,
+                                                    fontFamily:
+                                                        'Source Sans Pro'))),
                                       ],
                                     ));
                           },
@@ -169,21 +109,32 @@ class _DictionaryState extends State<Dictionary> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.white,
+        backgroundColor: Color.fromARGB(255, 255, 255, 255),
         child: Icon(
           Icons.add,
-          color: Color.fromARGB(255, 3, 44, 46),
+          color: Color.fromARGB(255, 3, 0, 28),
         ),
-        hoverColor: Color.fromARGB(255, 3, 44, 46),
+        hoverColor: Color.fromARGB(255, 3, 0, 28),
         onPressed: () {
           showDialog(
             context: context,
             builder: (context) => AlertDialog(
-              title: const Text('Enter the word/phrase'),
+              title: const Text(
+                'Enter the word/phrase',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                    fontFamily: 'Source Sans Pro',
+                    fontWeight: FontWeight.bold),
+              ),
               content: TextField(
                 controller: _textEditingController,
                 decoration: const InputDecoration(
                   hintText: 'Enter the word/phrase',
+                  hintStyle: TextStyle(
+                      color: Color.fromARGB(100, 0, 0, 0),
+                      fontSize: 16,
+                      fontFamily: 'Source Sans Pro'),
                 ),
               ),
               actions: [
@@ -196,7 +147,12 @@ class _DictionaryState extends State<Dictionary> {
                   },
                   child: const Text(
                     'Add',
-                    style: TextStyle(color: Colors.black),
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 16,
+                      fontFamily: 'Source Sans Pro',
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ],
