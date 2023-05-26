@@ -11,6 +11,7 @@ class EditProfilePage extends StatefulWidget {
   _EditProfilePageState createState() => _EditProfilePageState();
 }
 
+
 class _EditProfilePageState extends State<EditProfilePage> {
   FirebaseAuth auth = FirebaseAuth.instance;
   User user = FirebaseAuth.instance.currentUser!;
@@ -81,61 +82,63 @@ class _EditProfilePageState extends State<EditProfilePage> {
               //   //     fontFamily: 'Source Sans Pro'),
               // ),
               SizedBox(
-                height: 15,
+                height: 10,
               ),
               Center(
                 child: Stack(
                   children: [
-                    Container(
-                      width: 130,
-                      height: 130,
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                              width: 4,
-                              color: Theme.of(context).scaffoldBackgroundColor),
-                          boxShadow: [
-                            BoxShadow(
-                                spreadRadius: 2,
-                                blurRadius: 10,
-                                color: Colors.black.withOpacity(0.1),
-                                offset: Offset(0, 10))
-                          ],
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: AssetImage(
-                                // ignore: text_direction_code_point_in_literal
-                                "C:/User/HP/Swiftype/admin.png",
-                              ))),
-                    ),
-                    Positioned(
-                        bottom: 0,
-                        right: 0,
-                        child: Container(
-                          height: 40,
-                          width: 40,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                              width: 4,
-                              color: Theme.of(context).scaffoldBackgroundColor,
-                            ),
-                            color: Color.fromARGB(255, 70, 192, 74),
-                          ),
-                          child: GestureDetector(
-                            onTap: () {
-                              // Navigator.push(
-                              //   context,
-                              //   MaterialPageRoute(
-                              //       builder: (context) => ProfileScree()),
-                              // );
-                            },
-                            child: Icon(
-                              Icons.edit,
-                              color: Colors.white,
-                            ),
-                          ),
-                        )),
+                    // Container(
+                    //   width: 130,
+                    //   height: 130,
+                    //   decoration: BoxDecoration(
+                    //       border: Border.all(
+                    //           width: 4,
+                    //           color: Theme.of(context).scaffoldBackgroundColor),
+                    //       boxShadow: [
+                    //         BoxShadow(
+                    //             spreadRadius: 2,
+                    //             blurRadius: 10,
+                    //             color: Colors.black.withOpacity(0.1),
+                    //             offset: Offset(0, 10))
+                    //       ],
+                    //       // shape: BoxShape.circle,
+                    //       // image: DecorationImage(
+                    //       //     fit: BoxFit.cover,
+                    //       //     // image: AssetImage(
+                    //       //     //   // ignore: text_direction_code_point_in_literal
+                    //       //     //   "C:/User/HP/Swiftype/admin.png",
+                    //       //     // )
+                    //       //     )
+                    //       ),
+                    // ),
+                    // Positioned(
+                    //     bottom: 0,
+                    //     right: 0,
+                    //     child: Container(
+                    //       height: 40,
+                    //       width: 40,
+                    //       decoration: BoxDecoration(
+                    //         shape: BoxShape.circle,
+                    //         border: Border.all(
+                    //           width: 4,
+                    //           color: Theme.of(context).scaffoldBackgroundColor,
+                    //         ),
+                    //         color: Color.fromARGB(255, 70, 192, 74),
+                    //       ),
+                    //       child: GestureDetector(
+                    //         onTap: () {
+                    //           // Navigator.push(
+                    //           //   context,
+                    //           //   MaterialPageRoute(
+                    //           //       builder: (context) => ProfileScree()),
+                    //           // );
+                    //         },
+                    //         child: Icon(
+                    //           Icons.edit,
+                    //           color: Colors.white,
+                    //         ),
+                    //       ),
+                    //     )),
                   ],
                 ),
               ),
