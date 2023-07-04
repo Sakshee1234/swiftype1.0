@@ -1,4 +1,4 @@
-# creationofswiftype
+# swiftype
 
 A new Flutter project.
 
